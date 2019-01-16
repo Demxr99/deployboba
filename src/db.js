@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // set up mongoDB connection
 // Example URI ---> mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net/catbookdb?retryWrites=true
-const mongoURL = 'mongodb+srv://admin:user@cluster0-y5kpz.mongodb.net/test?retryWrites=true';
+const mongoURL = 'mongodb+srv://admin:admin@cluster0-ma9j1.mongodb.net/test?retryWrites=true';
 const options = {
   useNewUrlParser: true
 };
@@ -12,5 +12,8 @@ const db = mongoose.connection;
 
 // db error handling
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('connected', function() {
+  console.log('database connected');
+});
 
 module.exports = db;

@@ -2,10 +2,14 @@
 const mongoose = require('mongoose');
 
 // define a schema
+// changed the type of zip to be a string
+// when it was a number, if 0 was the first digit, it was removed
+// eg. 02139 -> 2139
 const LocationModelSchema = new mongoose.Schema ({
   name        	: String,
   address    	: String,
-  zip   	: Number,
+  zip   	: String,
+  latLng : JSON,
   rating : Number,
   popDrinks : [String],
 });

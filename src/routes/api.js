@@ -53,6 +53,7 @@ router.post('/locations', function(req,res) {
   const newLocation = new Location({
     'name'        	: req.body.name,
     'address'    	: req.body.address,
+    'latLng' : req.body.latLng,
     'zip'   	: req.body.zip,
     'rating' : undefined,
     'popDrinks' : [],
@@ -60,10 +61,10 @@ router.post('/locations', function(req,res) {
 
   newLocation.save(function(err,location) {
     // give the user points if they added a location
-    User.findOne({_id:req.user._id}, function(err,user) {
-      user.points = user.points + 10;
-      user.save();
-    });
+    // User.findOne({_id:req.user._id}, function(err,user) {
+    //   user.points = user.points + 10;
+    //   user.save();
+    // });
     if (err) console.log(err);
   });
 
