@@ -1,0 +1,34 @@
+{
+  "name": "boba_run",
+  "version": "1.0.0",
+  "description": "web.lab website",
+  "main": "map.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mit6148/mqzhang21-lucywangs-demxr99.git"
+  },
+  "author": "Demar Edwards, Lucy Wang, Maggie Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mit6148/mqzhang21-lucywangs-demxr99/issues"
+  },
+  "homepage": "https://github.com/mit6148/mqzhang21-lucywangs-demxr99#readme",
+  "dependencies": {
+    "connect-ensure-login": "^0.1.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "http": "0.0.0",
+    "mongoose": "^5.4.4",
+    "passport": "^0.4.0",
+    "passport-google-oauth": "^1.0.0",
+    "session": "^0.1.0",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

@@ -4,6 +4,7 @@ const API_KEY = "AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI";
 
 let add_btn = document.getElementById("add-btn");
 add_btn.addEventListener("click", function(){
+    console.log("clicked");
     $('.ui.modal')
    .modal('setting', 'transition', 'fade up')
    .modal('show')
@@ -19,7 +20,7 @@ add_btn.addEventListener("click", function(){
             anchor: new google.maps.Point(25, 25) // anchor
             };
            get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : shop_address, 'key' : API_KEY}).then(location_info => {
-                console.log(location_info["results"][0]["geometry"]["location"]);
+                console.log(location_info);
                 let location = location_info["results"][0]["geometry"]["location"];
                 let marker = new google.maps.Marker({
                     position: location,
@@ -28,11 +29,23 @@ add_btn.addEventListener("click", function(){
                     icon: icon,
                 });
                 marker.setMap(map);
+                submitLocation();
            });
        }
    });
 });
 
+function submitLocation() {
+    const data =  {
+        name: shop_name,
+        address: shop_address,
+        zip_code: 5,
+        rating: 5,
+        drinks: ['Milk tea', 'Other tea'],
+    };
+
+    post('/api/location', data);
+}
 
 
 

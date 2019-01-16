@@ -7,7 +7,7 @@ const socketio = require('socket.io');
 
 // local dependencies
 const db = require('./db');
-const passport = require('./passport');
+// const passport = require('./passport');
 const views = require('./routes/views');
 const api = require('./routes/api');
 
@@ -27,27 +27,27 @@ app.use(session({
 }));
 
 // hook up passport
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // authentication routes
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+// app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate(
-    'google',
-    { failureRedirect: '/login' }
-  ),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
+// app.get(
+//   '/auth/google/callback',
+//   passport.authenticate(
+//     'google',
+//     { failureRedirect: '/login' }
+//   ),
+//   function(req, res) {
+//     res.redirect('/');
+//   }
+// );
 
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
+// app.get('/logout', function(req, res) {
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // set routes
 app.use('/', views);
