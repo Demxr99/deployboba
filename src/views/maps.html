@@ -25,11 +25,14 @@
 <body>
 
     <div class="ui container" style="height:100%; width:100%; position: relative;">
-
-        <div id="map"></div>
-        <button class="circular ui icon button" id="add-btn">
-            <i class="icon plus"></i>
-        </button>
+      <div class= "search-bar">
+        <input id="search-content" type="text" placeholder="search">
+        <button id="search-btn"> Search </button>
+      </div>
+      <div id="map"></div>
+      <button class="circular ui icon button" id="add-btn">
+        <i class="icon plus"></i>
+      </button>
 
         <div class="ui small modal">
             <div class="content">
@@ -63,6 +66,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI&callback=initMap"
             async defer></script>
     <script
+<<<<<<< HEAD
             src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
@@ -71,3 +75,13 @@
     <script src="/static/js/map.js"></script>
 </body>
 </html>
+=======
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="../../semantic/semantic.min.js"></script>
+    <script src="../../public/js/api.js"></script>
+    <script src="../../public/js/map.js"></script>
+  </body>
+</html>
+>>>>>>> eaf8bb52d3ce181b4af02ce0221e29fe4745f6a4
