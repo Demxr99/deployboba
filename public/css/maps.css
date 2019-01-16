@@ -1,8 +1,9 @@
 #add-btn {
     position: absolute;
     bottom: 35px;
-    right: 430px;
+    right: 670px;
     z-index: 99;
     height: 50px;
     width: 50px;
+    background: #c0c0a8
 }
