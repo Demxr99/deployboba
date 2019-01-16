@@ -7,32 +7,6 @@ const Location = require('../models/location');
 
 const router = express.Router();
 
-<<<<<<< HEAD
-// api endpoints
-router.post(
-    '/location', 
-    function(req, res) {
-        const newLocation = new Location({
-            'name' : req.body.name,
-            'address' : req.body.address,
-            'zip': req.body.zip_code,
-            'rating': req.body.rating,
-            'popDrinks': req.body.drinks,
-        });
-
-        newLocation.save()
-            .then(location => {
-                const io = req.app.get('socketio');
-                io.emit('location', location);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        res.send({});
-    }
-);
-module.exports = router;
-=======
 router.get('/whoami', function(req,res) {
   if(req.isAuthenticated()){
     res.send(req.user);
@@ -97,4 +71,3 @@ router.post('/locations', function(req,res) {
 });
 
 module.exports=router;
->>>>>>> eaf8bb52d3ce181b4af02ce0221e29fe4745f6a4
