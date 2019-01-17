@@ -1,3 +1,4 @@
+// import { stat } from "fs";
 let map;
 let icon;
 function initMap() {
@@ -20,19 +21,43 @@ function renderMarkers(icon){
     get('/api/locations', {}).then(locations => {
         console.log(locations);
         for (const location of locations) {
-            let new_marker = createMarker(location.latLng, location.name, icon)
+            let new_marker = createMarker(location.latLng, location.name, icon, location.address, location.rating)
             console.log(new_marker)
             new_marker.setMap(map);
         }
     });
 }
 
-function createMarker(location, title, icon) {
+function createMarker(location, title, icon, address, rating) {
     let marker = new google.maps.Marker({
         position: location,
         animation: google.maps.Animation.DROP,
         title: title,
         icon: icon,
+    });
+    marker.addListener('click', function() {
+        let contentDiv = document.getElementById("store-content");
+        let nameEl = document.getElementById("name");
+        let addressEl = document.getElementById("address");
+        let ratingEl = document.getElementById("rating");
+        let statusEl = document.getElementById("status");
+        let drinkEl = document.getElementById("drink");
+        console.log(address);
+
+        nameEl.innerHTML = "<strong>Store Name:</strong>";
+        addressEl.innerHTML = "<strong>Address:</strong>";
+        ratingEl.innerHTML = "<strong>Rating:</strong>";
+        statusEl.innerHTML = "<strong>Status:</strong>";
+        drinkEl.innerHTML = "<strong>Last Ordered Drink:</strong>";
+        
+        nameEl.innerHTML = nameEl.innerHTML + title;
+        addressEl.innerHTML = addressEl.innerHTML + address;
+        ratingEl.innerHTML = ratingEl.innerHTML + rating;
+        statusEl.innerHTML = statusEl.innerHTML + "visited";
+        drinkEl.innerHTML = drinkEl.innerHTML + "Milk Tea";
+
+        contentDiv.style.display = "block";
+
     });
     return marker
 }
