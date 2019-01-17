@@ -2,7 +2,7 @@
   "name": "boba_run",
   "version": "1.0.0",
   "description": "web.lab website",
-  "main": "map.js",
+  "main": "public/js/home.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js"
