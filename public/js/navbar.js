@@ -1,6 +1,6 @@
 function newNavbarItem(text, url) {
   const itemLink = document.createElement('a');
-  itemLink.className = 'nav-item nav-link';
+  itemLink.className = 'item';
   itemLink.innerHTML = text;
   itemLink.href = url;
 
@@ -8,7 +8,7 @@ function newNavbarItem(text, url) {
 }
 
 function renderNavbar(user) {
-  const navbarDiv = document.getElementById('nav-item-container');
+  const navbarDiv = document.getElementsByClassName("ui stackable inverted teal menu");
 
   navbarDiv.appendChild(newNavbarItem('Home', '/'));
 

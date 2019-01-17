@@ -1,4 +1,5 @@
 function main() {
+  renderNavbar();
   renderSearch();
 }
 
