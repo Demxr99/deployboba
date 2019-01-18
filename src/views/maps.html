@@ -19,6 +19,12 @@
             padding: 0;
         }
     </style>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/js/calendar.min.js"></script>
+    <link rel="stylesheet" href="/static/css/calendar.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/semantic/semantic.min.css">
     <link rel="stylesheet" href="/static/css/maps.css">
     <link rel="stylesheet" href = "/static/css/style.css">
@@ -54,24 +60,69 @@
 
         <div class="ui small modal">
             <div class="content">
-                <form class="ui form">
-                    <div class="field">
-                        <label>Name of Boba Shop</label>
-                        <input id="shop-name" type="text" name="shop-name" placeholder="enter name here">
-                    </div>
-                    <div class="field">
-                        <label>Address</label>
-                        <input id="shop-address" type="text" name="shop-address" placeholder="enter address here">
-                    </div>
-                    <div class="field">
-                        <label>Zip code</label>
-                        <input id="shop-zip" type="text" name="shop-code" placeholder="enter zip code here">
-                    </div>
-                    <div class="actions">
-                        <div class="ui approve button">Submit</div>
-                        <div class="ui cancel button">Cancel</div>
-                    </div>
-                </form>
+                <div class="ui top attached tabular menu">
+                    <a class="item active" data-tab="first">Add Store</a>
+                    <a class="item" data-tab="second">Add Event</a>
+                </div>
+                <div class="ui bottom attached tab segment active" data-tab="first">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>Name of Boba Shop</label>
+                            <input id="shop-name" type="text" name="shop-name" placeholder="enter name here">
+                        </div>
+                        <div class="field">
+                            <label>Address</label>
+                            <input id="shop-address" type="text" name="shop-address" placeholder="enter address here">
+                        </div>
+                        <div class="field">
+                            <label>Zip code</label>
+                            <input id="shop-zip" type="text" name="shop-code" placeholder="enter zip code here">
+                        </div>
+                        <div class="actions">
+                            <div class="ui approve button">Submit</div>
+                            <div class="ui cancel button">Cancel</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="second">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>Name of Boba Shop</label>
+                            <input id="event-name" type="text" name="event-name" placeholder="enter name here">
+                        </div>
+                        <div class="field">
+                            <label>Address</label>
+                            <input id="event-address" type="text" name="event-address" placeholder="enter address here">
+                        </div>
+                        <div class="field">
+                            <label>Zip code</label>
+                            <input id="event-zip" type="text" name="event-code" placeholder="enter zip code here">
+                        </div>
+                        <div class="field">
+                            <label>Start Date</label>
+                            <div class="ui calendar" id="start-date">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" placeholder=" Start Date/Time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>End Date</label>
+                            <div class="ui calendar" id="end-date">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input type="text" placeholder="End Date/Time">
+                                </div>
+                            </div>  
+                        </div>
+        
+                        <div class="actions">
+                            <div class="ui approve button">Submit</div>
+                            <div class="ui cancel button">Cancel</div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -82,10 +133,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI&callback=initMap"
             async defer></script>
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
+    
     <script src="/static/semantic/semantic.min.js"></script>
     <script src="/static/js/map.js"></script>
 </body>

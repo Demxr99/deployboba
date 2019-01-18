@@ -25,6 +25,7 @@
     "mongoose": "^5.4.4",
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
+    "semantic-ui-calendar": "0.0.8",
     "session": "^0.1.0",
     "socket.io": "^2.2.0"
   },

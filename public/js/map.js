@@ -9,6 +9,21 @@ function main() {
       console.log(user);
       renderNavbar(user);
     });
+
+    $('.menu .item')
+    .tab()
+    ;
+
+    let startCalendar = document.getElementById("start-date");
+    startCalendar.addEventListener("click", function(){
+        console.log("i am here");
+        $('#start-date').calendar('popup', 'show');
+    });
+    let endCalendar = document.getElementById("end-date");
+    endCalendar.addEventListener("click", function(){
+        console.log("i am here");
+        $('#end-date').calendar('popup', 'show');
+    });
 }
 main();
 
