@@ -1,6 +1,6 @@
 function newNavbarItem(text, url) {
   const itemLink = document.createElement('a');
-  itemLink.className = 'ui item';
+  itemLink.className = 'item';
   itemLink.innerHTML = text;
   itemLink.href = url;
 
@@ -11,11 +11,17 @@ function renderNavbar(user) {
   const navbarDiv = document.getElementById("navbar");
 
   const logo = document.createElement('div');
-  logo.className = 'item';
+  logo.className = 'ui item';
   logo.innerHTML = 'LOGO';
 
   navbarDiv.appendChild(logo);
-  navbarDiv.appendChild(newNavbarItem('BOBA RUN', '/'));
+  const brand = document.createElement('a');
+  brand.className = 'header item';
+  brand.id = "brand"
+  brand.innerHTML = 'BOBA RUN';
+  brand.href = '/';
+
+  navbarDiv.appendChild(brand);
 
   navbarDiv.appendChild(newNavbarItem('About', '/about'));
   navbarDiv.appendChild(newNavbarItem('Maps', '/map'));
@@ -46,7 +52,7 @@ function navbarRightMenu(user) {
   searchBar.appendChild(input);
   searchBar.appendChild(i);
   search.append(searchBar);
-  rightMenu.appendChild(search);
+  //rightMenu.appendChild(search);
 
   //login or logout depending on whether the user logged in
   if (user !== undefined && user.googleid !== undefined) {
