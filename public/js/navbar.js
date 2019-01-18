@@ -10,6 +10,13 @@ function newNavbarItem(text, url) {
 function renderNavbar(user) {
   const navbarDiv = document.getElementById("navbar");
 
+  const logo = document.createElement('div');
+  logo.className = 'item';
+  logo.innerHTML = 'LOGO';
+
+  navbarDiv.appendChild(logo);
+  navbarDiv.appendChild(newNavbarItem('BOBA RUN', '/'));
+
   navbarDiv.appendChild(newNavbarItem('About', '/about'));
   navbarDiv.appendChild(newNavbarItem('Maps', '/map'));
 
