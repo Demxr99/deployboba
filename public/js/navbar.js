@@ -10,17 +10,18 @@ function newNavbarItem(text, url) {
 function renderNavbar(user) {
   const navbarDiv = document.getElementById("navbar");
 
-  navbarDiv.appendChild(newNavbarItem('About', '/about-us'));
+  navbarDiv.appendChild(newNavbarItem('About', '/about'));
   navbarDiv.appendChild(newNavbarItem('Maps', '/map'));
 
-  if (typeof(user) !== 'undefined' && user._id !== undefined) {
+  if (user !== undefined && user.googleid !== undefined) {
     navbarDiv.appendChild(newNavbarItem('Profile', '/u/profile?'+user._id));
     navbarDiv.appendChild(newNavbarItem('Add Store/Event', '/add-store-event'));
   }
-  navbarDiv.appendChild(navbarRightMenu());
+  navbarDiv.appendChild(navbarRightMenu(user));
 }
 
-function navbarRightMenu() {
+function navbarRightMenu(user) {
+  console.log('creating');
   const rightMenu = document.createElement('div');
   rightMenu.className = "right menu";
 
@@ -41,7 +42,8 @@ function navbarRightMenu() {
   rightMenu.appendChild(search);
 
   //login or logout depending on whether the user logged in
-  if (typeof(user) !== 'undefined' && user._id !== undefined) {
+  if (user !== undefined && user.googleid !== undefined) {
+    console.log('here');
     rightMenu.appendChild(newNavbarItem('Logout', '/logout'));
   } else {
     rightMenu.appendChild(newNavbarItem('Login', '/auth/google'));

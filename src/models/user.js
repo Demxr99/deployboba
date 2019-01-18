@@ -5,12 +5,12 @@ const mongoose = require('mongoose');
 const UserModelSchema = new mongoose.Schema ({
   name        	: String,
   googleid     	: String,
-  points   	: Number,
-  status : String,
-  favStore : String,
-  favDrink: String,
-  badges: [String],
-  storesVisited: [(String, String)],
+  points        : Number,
+  status        : String,
+  favStore      : String,
+  favDrink      : String,
+  badges        : [String],
+  storesVisited : [(String, String)],
 });
 
 // compile model from schema

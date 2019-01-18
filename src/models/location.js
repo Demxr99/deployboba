@@ -7,11 +7,11 @@ const mongoose = require('mongoose');
 // eg. 02139 -> 2139
 const LocationModelSchema = new mongoose.Schema ({
   name        	: String,
-  address    	: String,
-  zip   	: String,
-  latLng : JSON,
-  rating : Number,
-  popDrinks : [String],
+  address    	  : String,
+  zip   	      : String,
+  latLng        : JSON,
+  rating        : Number,
+  popDrinks     : [String],
 });
 
 // compile model from schema

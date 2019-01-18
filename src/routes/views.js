@@ -11,12 +11,16 @@ router.get('/u/profile', function(req, res) {
   res.sendFile('profile.html', { root: 'src/views' });
 });
 
-router.get('/maps', function(req, res) {
+router.get('/map', function(req, res) {
   res.sendFile('maps.html', { root: 'src/views' });
 });
 
 router.get('/about', function(req, res) {
   res.sendFile('about.html', { root: 'src/views' });
 });
+
+router.get('/add-store-event', function(req, res){
+  res.sendFile('add.html', {root: 'src/views'});
+})
 
 module.exports = router;

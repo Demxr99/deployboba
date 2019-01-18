@@ -7,6 +7,7 @@ const Location = require('../models/location');
 
 const router = express.Router();
 
+//api endpoints
 router.get('/whoami', function(req,res) {
   if(req.isAuthenticated()){
     res.send(req.user);
@@ -17,15 +18,18 @@ router.get('/whoami', function(req,res) {
 });
 
 router.get('/user', function(req,res) {
+  // User.findOne({_id: req.query.googleid}, function(err, user){
+  //   res.send(user);
+  // })
   res.send({
     name        	: 'Anonymous',
     googleid     	: 'anonid',
-    points   	: 0,
-    status : 'Boba Apprentice',
-    favStore : 'None Added',
-    favDrink: 'None Added',
-    badges: [],
-    storesVisited: [],
+    points   	    : 0,
+    status        : 'Boba Apprentice',
+    favStore      : 'None Added',
+    favDrink      : 'None Added',
+    badges        : [],
+    storesVisited : [],
   });
 });
 
@@ -52,11 +56,11 @@ router.get('/locations', function (req,res) {
 router.post('/locations', connect.ensureLoggedIn(), function(req,res) {
   const newLocation = new Location({
     'name'        	: req.body.name,
-    'address'    	: req.body.address,
-    'latLng' : req.body.latLng,
-    'zip'   	: req.body.zip,
-    'rating' : undefined,
-    'popDrinks' : [],
+    'address'    	  : req.body.address,
+    'latLng'        : req.body.latLng,
+    'zip'   	      : req.body.zip,
+    'rating'        : undefined,
+    'popDrinks'     : [],
   });
 
   newLocation.save(function(err,location) {
