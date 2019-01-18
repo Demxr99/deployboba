@@ -27,10 +27,14 @@
     <div class="ui grid container" style="height:100%; width:100%; position: relative;">
         <div class="two column row">
             <div class="six wide column">
-                <div class= "ui search">
-                    <input id="search-content" type="text" placeholder="search">
-                    <button id="search-btn"> Search </button>
-                  </div>
+                <div class="ui fluid selection search dropdown multiple">
+                    <input name="tags" type="hidden">
+                    
+                    <div class="default text">Select</div>
+                    <i class="search icon"></i>
+                    <div class="menu" id="results">
+                    </div>
+                </div>
                 <div id="store-content" class="ui container" style="display:none;">
                     <p id="name"><strong>Store Name:</strong></p>
                     <p id="address"><strong>Address:</strong></p>
@@ -74,7 +78,6 @@
 
     <script src="/static/js/api.js"></script>
     <script src="/static/js/navbar.js"></script>
-    <script src="/static/js/index.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI&callback=initMap"
             async defer></script>
