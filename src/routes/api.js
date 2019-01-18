@@ -18,19 +18,19 @@ router.get('/whoami', function(req,res) {
 });
 
 router.get('/user', function(req,res) {
-  // User.findOne({_id: req.query.googleid}, function(err, user){
-  //   res.send(user);
-  // })
-  res.send({
-    name        	: 'Anonymous',
-    googleid     	: 'anonid',
-    points   	    : 0,
-    status        : 'Boba Apprentice',
-    favStore      : 'None Added',
-    favDrink      : 'None Added',
-    badges        : [],
-    storesVisited : [],
-  });
+  User.findOne({_id: req.query.googleid}, function(err, user){
+    res.send(user);
+  })
+  // res.send({
+  //   name        	: 'Anonymous',
+  //   googleid     	: 'anonid',
+  //   points   	    : 0,
+  //   status        : 'Boba Apprentice',
+  //   favStore      : 'None Added',
+  //   favDrink      : 'None Added',
+  //   badges        : [],
+  //   storesVisited : [],
+  // });
 });
 
 //change user values such as favStore, favDrink, points, or storesVisited

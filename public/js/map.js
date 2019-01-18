@@ -1,3 +1,11 @@
+function main() {
+    get('/api/whoami', {}).then(function(user) {
+      console.log(user);
+      renderNavbar(user);
+    });
+}
+main();
+
 const API_KEY = "AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI";
 
 let add_btn = document.getElementById("add-btn");
