@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Impact');
+
+/* formatting the navbar */
+#navbar {
+  background: #a9d9daff;
+  height: 75px;
+}
+
+.item {
+  font-size: 25px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+#brand {
+  font-size: 42px;
+  font-family: 'Impact', sans-serif;
+  font-weight: 10px;
+  padding: 5px; 
+}
+
+/* formatting the background */
+body {
+  background-color: #f9eccbff;
+}
+
+/*create variables*/
+:root{
+    --height: 60px; 
+}
