@@ -47,7 +47,7 @@ function initMap() {
 function renderMarkers(icon){
     names = [];
     markers = [];
-    get('/api/locations', {}).then(locations => {
+    get('/api/locations', {name : ''}).then(locations => {
         console.log(locations);
         for (const location of locations) {
             let new_marker = createMarker(location.latLng, location.name, icon, location.address, location.rating);
@@ -130,6 +130,18 @@ function submitLocation(shop_name, shop_address, shop_zip, location) {
     post('/api/locations', data);
 }
 
+function submitEvent(event_name, event_address, event_zip, location, event_start, event_end){
+    const data = {
+        name : event_name,
+        address : event_address,
+        zip : event_zip,
+        latLng : location,
+        start : event_start,
+        end : event_end,
+    };
+    post('/api//events', data);
+}
+
 let add_btn = document.getElementById("add-btn");
 add_btn.addEventListener("click", function(){
     console.log("clicked");
@@ -138,17 +150,43 @@ add_btn.addEventListener("click", function(){
    .modal('show')
    .modal({
        onApprove: function(){
-           let shop_name = document.getElementById("shop-name").value;
-           let shop_address = document.getElementById("shop-address").value;
-           let shop_zip = document.getElementById("shop-zip").value;
-           
-           get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : shop_address, 'key' : API_KEY}).then(location_info => {
-                console.log(location_info);
-                let location = location_info["results"][0]["geometry"]["location"];
-                let marker = createMarker(location, shop_name, icon, shop_address);
-                marker.setMap(map);
-                submitLocation(shop_name, shop_address, shop_zip, location);
-           });
+           let firstTabLink = document.getElementById("tab-1");
+        //    let secondTabLink = document.getElementById("tab-2");
+           if (firstTabLink.className == "item active"){
+                console.log("This is the first tab");
+                let shop_name = document.getElementById("shop-name").value;
+                let shop_address = document.getElementById("shop-address").value;
+                let shop_zip = document.getElementById("shop-zip").value;
+                
+                get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : shop_address, 'key' : API_KEY}).then(location_info => {
+                        console.log(location_info);
+                        let location = location_info["results"][0]["geometry"]["location"];
+                        let marker = createMarker(location, shop_name, icon, shop_address);
+                        marker.setMap(map);
+                        submitLocation(shop_name, shop_address, shop_zip, location);
+                });
+           }
+           else {
+                console.log("This is the second tab");
+                let event_name = document.getElementById("event-name").value;
+                let event_address = document.getElementById("event-address").value;
+                let event_zip = document.getElementById("event-zip").value;
+                let event_start = document.getElementById("event-start").value;
+                let event_end = document.getElementById("event-end").value;
+
+                let startDate = new Date(event_start);
+                let endDate = new Date(event_end);
+                console.log(startDate);
+                console.log(endDate);
+
+                get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : event_address, 'key' : API_KEY}).then(location_info => {
+                        console.log(location_info);
+                        let location = location_info["results"][0]["geometry"]["location"];
+                        let marker = createMarker(location, event_name, icon, event_address);
+                        marker.setMap(map);
+                        submitEvent(event_name, event_address, event_zip, location, startDate, endDate);
+                });
+           }  
        }
    });
 });

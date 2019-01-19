@@ -4,6 +4,7 @@ const connect = require('connect-ensure-login');
 
 const User = require('../models/user');
 const Location = require('../models/location');
+const Event = require('../models/event');
 
 const router = express.Router();
 
@@ -82,6 +83,24 @@ router.post('/locations', connect.ensureLoggedIn(), function(req,res) {
       user.points = user.points + 10;
       user.save();
     });
+    if (err) console.log(err);
+  });
+
+  res.send({});
+});
+
+router.post('/events', connect.ensureLoggedIn(), function(req, res){
+  const newEvent = new Event({
+    'name'          : req.body.name,
+    'address'       : req.body.address,
+    'zip'           : req.body.zip,
+    'latLng'        : req.body.latLng,
+    'timeStart'     : req.body.start,
+    'timeEnd'       : req.body.end,
+  });
+
+  newEvent.save(function(err, event) {
+    // may give user points for adding event 
     if (err) console.log(err);
   });
 
