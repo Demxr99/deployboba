@@ -27,6 +27,19 @@ body {
   background-color: #f9eccbff;
 }
 
+/* formatting the title */
+#title-head {
+  text-align:center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: #b2765d;
+}
+
+.ui#content{
+  padding-top: 100px;
+}
+
 /*create variables*/
 :root{
     --height: 60px; 
