@@ -21,16 +21,10 @@ function renderUserData(user) {
 
   const statusArea = document.getElementById('status');
   const status = document.createElement('div');
-  if (user.status==undefined) {
-    if (user.points==undefined) {
-      post('/api/user',{status: "Boba Newbie", points: 0});
-    }
-    status.innerHTML =
-  }
-  status.innerHTML = user.status;
+  status.innerHTML = "Status: "+user.status;
   statusArea.appendChild(status);
   const points = document.createElement('div');
-  points.innerHTML = user.points;
+  points.innerHTML = "Points: "+ user.points;
   statusArea.appendChild(points);
 	// rendering latest post
 	//const latestPostCard = document.getElementById('latest-post-card');
