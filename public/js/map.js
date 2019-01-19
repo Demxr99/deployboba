@@ -10,13 +10,11 @@ function main() {
       renderNavbar(user);
     });
 
-    /*
-    let x = document.cookie;
-    console.log(x);
-    document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    let y = document.cookie;
-    console.log(y);
-    */
+    // let x = document.cookie;
+    // console.log(x);
+    // document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    // let y = document.cookie;
+    // console.log(y);
 
     $('.menu .item')
     .tab()
@@ -53,9 +51,20 @@ function initMap() {
 }
 
 function renderMarkers(icon){
+    let x = document.cookie;
+    if (x == undefined){
+        new_x = '';
+    } 
+    else {
+        new_x = x.slice(15, x.length);
+    }
+    
+    console.log(x);
+    console.log("hello");
     names = [];
     markers = [];
-    get('/api/events', {name : ''}).then(events => {
+    
+    get('/api/events', {name : new_x}).then(events => {
         console.log(events);
         for (const event of events) {
             let new_event_marker = createMarker(event.latLng, event.name, icon, event.address, event.rating);
@@ -70,7 +79,7 @@ function renderMarkers(icon){
             resultsDiv.appendChild(newDiv);
         }
     });
-    get('/api/locations', {name : ''}).then(locations => {
+    get('/api/locations', {name : new_x}).then(locations => {
         console.log(locations);
         for (const location of locations) {
             let new_marker = createMarker(location.latLng, location.name, icon, location.address, location.rating);
@@ -107,6 +116,10 @@ function renderMarkers(icon){
             on: "hover"
           });
     });
+    document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    let y = document.cookie;
+    console.log(y);
+    console.log("nothing above");
 }
 
 function createMarker(location, title, icon, address, rating) {
