@@ -55,6 +55,21 @@ function initMap() {
 function renderMarkers(icon){
     names = [];
     markers = [];
+    get('/api/events', {name : ''}).then(events => {
+        console.log(events);
+        for (const event of events) {
+            let new_event_marker = createMarker(event.latLng, event.name, icon, event.address, event.rating);
+            new_event_marker.setMap(map);
+            names.push({title: event.name});
+            markers.push(new_event_marker);
+            let newDiv = document.createElement('div');
+            let resultsDiv = document.getElementById('results');
+            newDiv.className = 'item';
+            newDiv.innerText = event.name;
+            newDiv.nodeValue = event.name;
+            resultsDiv.appendChild(newDiv);
+        }
+    });
     get('/api/locations', {name : ''}).then(locations => {
         console.log(locations);
         for (const location of locations) {
@@ -159,7 +174,6 @@ add_btn.addEventListener("click", function(){
    .modal({
        onApprove: function(){
            let firstTabLink = document.getElementById("tab-1");
-        //    let secondTabLink = document.getElementById("tab-2");
            if (firstTabLink.className == "item active"){
                 console.log("This is the first tab");
                 let shop_name = document.getElementById("shop-name").value;

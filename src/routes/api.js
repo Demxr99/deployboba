@@ -66,6 +66,19 @@ router.get('/locations', function (req,res) {
   }
 });
 
+router.get('/events', function(req, res) {
+  if (req.query.name=='') {
+    Event.find({}, function(err,events) {
+      res.send(events);
+    });
+  }
+  else {
+    Event.find({name: req.query.name}, function(err,events) {
+      res.send(events);
+    });
+  }
+});
+
 //add a location
 router.post('/locations', connect.ensureLoggedIn(), function(req,res) {
   const newLocation = new Location({
