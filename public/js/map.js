@@ -10,24 +10,16 @@ function main() {
       renderNavbar(user);
     });
 
-    // let x = document.cookie;
-    // console.log(x);
-    // document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-    // let y = document.cookie;
-    // console.log(y);
-
     $('.menu .item')
     .tab()
     ;
 
     let startCalendar = document.getElementById("start-date");
     startCalendar.addEventListener("click", function(){
-        console.log("i am here");
         $('#start-date').calendar('popup', 'show');
     });
     let endCalendar = document.getElementById("end-date");
     endCalendar.addEventListener("click", function(){
-        console.log("i am here");
         $('#end-date').calendar('popup', 'show');
     });
 }
@@ -51,6 +43,7 @@ function initMap() {
 }
 
 function renderMarkers(icon){
+    // retrieve input from search bar on the home screen
     let x = document.cookie;
     if (x == undefined){
         new_x = '';
@@ -59,15 +52,14 @@ function renderMarkers(icon){
         new_x = x.slice(15, x.length);
     }
     
-    console.log(x);
-    console.log("hello");
     names = [];
     markers = [];
     
+    // gets all events from database that match criteria
     get('/api/events', {name : new_x}).then(events => {
         console.log(events);
         for (const event of events) {
-            let new_event_marker = createMarker(event.latLng, event.name, icon, event.address, event.rating);
+            let new_event_marker = createEventMarker(event.latLng, event.name, icon, event.address, event.rating, event.timeStart,  event.timeEnd);
             new_event_marker.setMap(map);
             names.push({title: event.name});
             markers.push(new_event_marker);
@@ -79,10 +71,11 @@ function renderMarkers(icon){
             resultsDiv.appendChild(newDiv);
         }
     });
+    // gets all locations from database that match criteria
     get('/api/locations', {name : new_x}).then(locations => {
         console.log(locations);
         for (const location of locations) {
-            let new_marker = createMarker(location.latLng, location.name, icon, location.address, location.rating);
+            let new_marker = createStoreMarker(location.latLng, location.name, icon, location.address, location.rating);
             new_marker.setMap(map);
             names.push({title: location.name});
             markers.push(new_marker);
@@ -116,13 +109,12 @@ function renderMarkers(icon){
             on: "hover"
           });
     });
+    // deletes cookie from home page
     document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
     let y = document.cookie;
-    console.log(y);
-    console.log("nothing above");
 }
 
-function createMarker(location, title, icon, address, rating) {
+function createStoreMarker(location, title, icon, address, rating) {
     let marker = new google.maps.Marker({
         position: location,
         animation: google.maps.Animation.DROP,
@@ -130,12 +122,15 @@ function createMarker(location, title, icon, address, rating) {
         icon: icon,
     });
     marker.addListener('click', function() {
+        let eventDiv = document.getElementById("event-content");
+        eventDiv.style.display = "none";
+
         let contentDiv = document.getElementById("store-content");
-        let nameEl = document.getElementById("name");
-        let addressEl = document.getElementById("address");
-        let ratingEl = document.getElementById("rating");
-        let statusEl = document.getElementById("status");
-        let drinkEl = document.getElementById("drink");
+        let nameEl = document.getElementById("store-name");
+        let addressEl = document.getElementById("store-address");
+        let ratingEl = document.getElementById("store-rating");
+        let statusEl = document.getElementById("store-status");
+        let drinkEl = document.getElementById("store-drink");
         console.log(address);
 
         nameEl.innerHTML = "<strong>Store Name:</strong>";
@@ -144,16 +139,77 @@ function createMarker(location, title, icon, address, rating) {
         statusEl.innerHTML = "<strong>Status:</strong>";
         drinkEl.innerHTML = "<strong>Last Ordered Drink:</strong>";
 
-        nameEl.innerHTML = nameEl.innerHTML + title;
-        addressEl.innerHTML = addressEl.innerHTML + address;
-        ratingEl.innerHTML = ratingEl.innerHTML + rating;
-        statusEl.innerHTML = statusEl.innerHTML + "visited";
-        drinkEl.innerHTML = drinkEl.innerHTML + "Milk Tea";
+        nameEl.innerHTML += title;
+        addressEl.innerHTML += address;
+        ratingEl.innerHTML += rating;
+        statusEl.innerHTML += "visited";
+        drinkEl.innerHTML += "Milk Tea";
 
         contentDiv.style.display = "block";
-
     });
-    return marker
+    return marker;
+}
+
+function createEventMarker(location, title, icon, address, rating, start, end){
+    let marker = new google.maps.Marker({
+        position: location,
+        animation: google.maps.Animation.DROP,
+        title: title,
+        icon: icon,
+    });
+
+    marker.addListener("click", function(){
+        let contentDiv = document.getElementById("store-content");
+        contentDiv.style.display = "none";
+    
+        let eventDiv = document.getElementById("event-content");
+        let nameEl = document.getElementById("event-name-disp");
+        let addressEl = document.getElementById("event-address-disp");
+        let ratingEl = document.getElementById("event-rating-disp");
+        let drinkEl = document.getElementById("event-drinks-disp");
+        let startEl = document.getElementById("event-start-disp");
+        let endEl = document.getElementById("event-end-disp");
+        console.log(address);
+    
+        nameEl.innerHTML = "<strong>Event Name: </strong>";
+        addressEl.innerHTML = "<strong>Address: </strong>";
+        ratingEl.innerHTML = "<strong>Rating: </strong>";
+        drinkEl.innerHTML = "<strong>Drinks available: </strong>";
+        startEl.innerHTML = "<strong>Start Date: </strong>";
+        endEl.innerHTML = "<strong>End Date: </strong>";
+    
+        nameEl.innerHTML += title;
+        addressEl.innerHTML += address;
+        ratingEl.innerHTML += rating;
+        drinkEl.innerHTML += "Milk Tea";
+
+        Number.prototype.padLeft = function(base,chr){
+            var  len = (String(base || 10).length - String(this).length)+1;
+            return len > 0? new Array(len).join(chr || '0')+this : this;
+        }
+
+        let d = new Date(start);
+        dformat = [(d.getMonth()+1).padLeft(),
+               d.getDate().padLeft(),
+               d.getFullYear()].join('/') +' ' +
+              [d.getHours().padLeft(),
+               d.getMinutes().padLeft(),
+               d.getSeconds().padLeft()].join(':');
+        startEl.innerHTML += dformat;
+
+
+        d = new Date(end);
+        dformat = [(d.getMonth()+1).padLeft(),
+               d.getDate().padLeft(),
+               d.getFullYear()].join('/') +' ' +
+              [d.getHours().padLeft(),
+               d.getMinutes().padLeft(),
+               d.getSeconds().padLeft()].join(':');
+        endEl.innerHTML += dformat;
+
+        eventDiv.style.display = "block";
+    });
+    return marker;
 }
 
 function submitLocation(shop_name, shop_address, shop_zip, location) {
@@ -175,7 +231,7 @@ function submitEvent(event_name, event_address, event_zip, location, event_start
         start : event_start,
         end : event_end,
     };
-    post('/api//events', data);
+    post('/api/events', data);
 }
 
 let add_btn = document.getElementById("add-btn");
@@ -196,7 +252,7 @@ add_btn.addEventListener("click", function(){
                 get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : shop_address, 'key' : API_KEY}).then(location_info => {
                         console.log(location_info);
                         let location = location_info["results"][0]["geometry"]["location"];
-                        let marker = createMarker(location, shop_name, icon, shop_address);
+                        let marker = createStoreMarker(location, shop_name, icon, shop_address, 0);
                         marker.setMap(map);
                         submitLocation(shop_name, shop_address, shop_zip, location);
                 });
@@ -217,7 +273,7 @@ add_btn.addEventListener("click", function(){
                 get('https://maps.googleapis.com/maps/api/geocode/json', {'address' : event_address, 'key' : API_KEY}).then(location_info => {
                         console.log(location_info);
                         let location = location_info["results"][0]["geometry"]["location"];
-                        let marker = createMarker(location, event_name, icon, event_address);
+                        let marker = createEventMarker(location, event_name, icon, event_address, 0, startDate, endDate);
                         marker.setMap(map);
                         submitEvent(event_name, event_address, event_zip, location, startDate, endDate);
                 });

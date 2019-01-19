@@ -42,12 +42,22 @@
                     <div class="menu" id="results">
                     </div>
                 </div>
-                <div id="store-content" class="ui container" style="display:none;">
-                    <p id="name"><strong>Store Name:</strong></p>
-                    <p id="address"><strong>Address:</strong></p>
-                    <p id="rating"><strong>Rating:</strong></p>
-                    <p id="status"><strong>Status:</strong></p>
-                    <p id="drink"><strong>Last Ordered Drink:</strong></p>
+                <div class="ui container">
+                    <div id="store-content" class="ui container" style="display:none;">
+                        <p id="store-name"><strong>Store Name: </strong></p>
+                        <p id="store-address"><strong>Address: </strong></p>
+                        <p id="store-rating"><strong>Rating: </strong></p>
+                        <p id="store-status"><strong>Status: </strong></p>
+                        <p id="store-drink"><strong>Last Ordered Drink: </strong></p>
+                    </div>
+                    <div id="event-content" class="ui container" style="display:none;">
+                        <p id="event-name-disp"><strong>Event Name:</strong></p>
+                        <p id="event-address-disp"><strong>Address:</strong></p>
+                        <p id="event-rating-disp"><strong>Rating:</strong></p>
+                        <p id="event-drinks-disp"><strong>Drinks available: </strong></p>
+                        <p id="event-start-disp"><strong>Start Date: </strong></p>
+                        <p id="event-end-disp"><strong>End Date: </strong></p>
+                    </div>
                 </div>
             </div>
             <div class="ten wide column">
@@ -87,7 +97,7 @@
                 <div class="ui bottom attached tab segment" data-tab="second">
                     <form class="ui form">
                         <div class="field">
-                            <label>Name of Boba Shop</label>
+                            <label>Name of Event</label>
                             <input id="event-name" type="text" name="event-name" placeholder="enter name here">
                         </div>
                         <div class="field">

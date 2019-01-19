@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mit6148/mqzhang21-lucywangs-demxr99#readme",
   "dependencies": {
     "connect-ensure-login": "^0.1.1",
+    "dateformat": "^3.0.3",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "http": "0.0.0",
