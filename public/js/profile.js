@@ -19,6 +19,19 @@ function renderUserData(user) {
 	const profileImage = document.getElementById('profile-image');
 	profileImage.style = 'background-image:url(https://i.pinimg.com/736x/98/e0/7d/98e07decc7c1ca58236995de3567e46a--cat-shirts-kitties-cutest.jpg)';
 
+  const statusArea = document.getElementById('status');
+  const status = document.createElement('div');
+  if (user.status==undefined) {
+    if (user.points==undefined) {
+      post('/api/user',{status: "Boba Newbie", points: 0});
+    }
+    status.innerHTML =
+  }
+  status.innerHTML = user.status;
+  statusArea.appendChild(status);
+  const points = document.createElement('div');
+  points.innerHTML = user.points;
+  statusArea.appendChild(points);
 	// rendering latest post
 	//const latestPostCard = document.getElementById('latest-post-card');
 
