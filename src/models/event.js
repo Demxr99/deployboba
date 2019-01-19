@@ -10,8 +10,8 @@ const EventModelSchema = new mongoose.Schema ({
   address    	  : String,
   zip   	      : String,
   latLng        : JSON,
-  timeStart       : Number,
-  timeEnd     : Number,
+  timeStart       : Date,
+  timeEnd     : Date,
 });
 
 // compile model from schema

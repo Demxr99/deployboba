@@ -61,8 +61,8 @@
         <div class="ui small modal">
             <div class="content">
                 <div class="ui top attached tabular menu">
-                    <a class="item active" data-tab="first">Add Store</a>
-                    <a class="item" data-tab="second">Add Event</a>
+                    <a class="item active" data-tab="first" id="tab-1">Add Store</a>
+                    <a class="item" data-tab="second" id="tab-2">Add Event</a>
                 </div>
                 <div class="ui bottom attached tab segment active" data-tab="first">
                     <form class="ui form">
@@ -103,7 +103,7 @@
                             <div class="ui calendar" id="start-date">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input type="text" placeholder=" Start Date/Time">
+                                    <input id="event-start" type="text" placeholder=" Start Date/Time">
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             <div class="ui calendar" id="end-date">
                                 <div class="ui input left icon">
                                     <i class="calendar icon"></i>
-                                    <input type="text" placeholder="End Date/Time">
+                                    <input id="event-end" type="text" placeholder="End Date/Time">
                                 </div>
                             </div>  
                         </div>
