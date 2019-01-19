@@ -10,6 +10,14 @@ function main() {
       renderNavbar(user);
     });
 
+    /*
+    let x = document.cookie;
+    console.log(x);
+    document.cookie = x + "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    let y = document.cookie;
+    console.log(y);
+    */
+
     $('.menu .item')
     .tab()
     ;
@@ -78,10 +86,10 @@ function renderMarkers(icon){
                     }
                 }
             },
-            forceSelection: false, 
-            selectOnKeydown: false, 
+            forceSelection: false,
+            selectOnKeydown: false,
             showOnFocus: false,
-            on: "hover" 
+            on: "hover"
           });
     });
 }
@@ -107,7 +115,7 @@ function createMarker(location, title, icon, address, rating) {
         ratingEl.innerHTML = "<strong>Rating:</strong>";
         statusEl.innerHTML = "<strong>Status:</strong>";
         drinkEl.innerHTML = "<strong>Last Ordered Drink:</strong>";
-        
+
         nameEl.innerHTML = nameEl.innerHTML + title;
         addressEl.innerHTML = addressEl.innerHTML + address;
         ratingEl.innerHTML = ratingEl.innerHTML + rating;
@@ -195,9 +203,8 @@ $('.ui.dropdown').dropdown({
     onChange: function (value, text, $selectedItem) {
       console.log(value);
     },
-    forceSelection: false, 
-    selectOnKeydown: false, 
+    forceSelection: false,
+    selectOnKeydown: false,
     showOnFocus: false,
-    on: "hover" 
+    on: "hover"
   });
-

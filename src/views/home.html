@@ -7,12 +7,22 @@
     <link rel="stylesheet" href = "/static/css/style.css">
   </head>
   <body>
-    <div class="ui stackable inverted menu" id = "navbar"> </div>
-    <h1 id = "title"> BobaRun </h1>
-    <div class= "search-bar">
-      <input id="search-content" type="text" placeholder="search">
-      <button id="search-btn"> Search </button>
+    <div class="ui fixed stackable inverted menu" id = "navbar"> </div>
+    <div class="flex-center-vertically">
+      <h1 id = "title"> Boba Run </h1>
+      <p id = "description"> This is the section where we describe what this website it is about. </p>
+      <div class="item" id = "search-item">
+        <div class="ui icon input">
+          <input class = "search-text" type="text" placeholder="Search for boba...">
+          <i class="search link icon">  </i>
+        </div>
+      </div>
+      <div class= "search-bar">
+        <input id="search-content" type="text" placeholder="search">
+        <button id="search-btn"> Search </button>
+      </div>
     </div>
+    
   </body>
   <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"

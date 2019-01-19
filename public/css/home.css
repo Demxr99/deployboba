@@ -1,7 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Impact');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 .search-bar {
   text-align: center;
 }
 
 #title {
+  /* make it responsive */
+	max-width: 100%;
+	width:100%;
+	height:auto;
+  display:block;
+  
   text-align:center;
+  font-family: 'Impact', sans-serif;
+  font-size: 100px;
+  color: #0097a7;
+
+  background-position-y: center;
+	background-position-x: center;
+
+}
+
+#description {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  color: #b2765d;
+}
+
+#search-item {
+  text-align: center;
+}
+
+.ui.input>input {
+  font-family: 'Quicksand', sans-serif;
+  width: 500px;
+}
+
+.flex-center-vertically {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
