@@ -44,12 +44,25 @@ router.post('/user', function(req,res) {
   });
   res.send({});
 });
-
-// will add params to narrow down search locations
+/*
 router.get('/locations', function (req,res) {
   Location.find({}, function(err,locations) {
     res.send(locations);
   });
+});
+*/
+// will add params to narrow down search locations
+router.get('/locations', function (req,res) {
+  if (req.query.name=='') {
+    Location.find({}, function(err,locations) {
+      res.send(locations);
+    });
+  }
+  else {
+    Location.find({name: req.query.name}, function(err,locations) {
+      res.send(locations);
+    });
+  }
 });
 
 //add a location
