@@ -3,11 +3,15 @@ let map;
 let icon;
 let names;
 let markers;
+let add_btn = document.getElementById("add-btn");
 
 function main() {
     get('/api/whoami', {}).then(function(user) {
       console.log(user);
       renderNavbar(user);
+      if (user !== undefined && user.googleid !== undefined) {
+          add_btn.style.display = 'block';
+      }
     });
 
     $('.menu .item')
@@ -234,7 +238,6 @@ function submitEvent(event_name, event_address, event_zip, location, event_start
     post('/api/events', data);
 }
 
-let add_btn = document.getElementById("add-btn");
 add_btn.addEventListener("click", function(){
     console.log("clicked");
     $('.ui.modal')
