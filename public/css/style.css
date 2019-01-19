@@ -7,16 +7,19 @@
   height: 75px;
 }
 
-.item {
+.ui.menu .item {
   font-size: 25px;
   font-family: 'Quicksand', sans-serif;
+  padding-right: 13px;
+  padding-left: 13px;
 }
 
 #brand {
-  font-size: 42px;
+  font-size: 40px;
   font-family: 'Impact', sans-serif;
   font-weight: 10px;
-  padding: 5px; 
+  padding-right: 20px; 
+  padding-left: 20px; 
 }
 
 /* formatting the background */

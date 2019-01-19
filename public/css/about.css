@@ -1,3 +1,8 @@
-#bigname {
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+#title {
     text-align:center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 50px;
+    color: #b2765d;
 }
