@@ -19,9 +19,10 @@ router.get('/whoami', function(req,res) {
 });
 
 router.get('/user', function(req,res) {
-  User.findOne({_id: req.query.googleid}, function(err, user){
+  User.findOne({_id: req.query._id}, function(err, user){
     res.send(user);
-  })
+    console.log(user.name);
+  });
   // res.send({
   //   name        	: 'Anonymous',
   //   googleid     	: 'anonid',

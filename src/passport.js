@@ -17,7 +17,9 @@ passport.use(new GoogleStrategy({
     if (!user) {
       const user = new User({
         name: profile.displayName,
-        googleid: profile.id
+        googleid: profile.id,
+        points:0,
+        status: "Boba Newbie"
       });
 
       user.save(function(err) {
