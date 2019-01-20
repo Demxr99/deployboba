@@ -1,5 +1,5 @@
 function main() {
-  get(API_ENDPOINT_START + '/api/whoami', {}).then(function(user) {
+  get('/api/whoami', {}).then(function(user) {
     console.log(user);
     renderNavbar(user);
     renderSearch();

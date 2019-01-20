@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // set up mongoDB connection
 // Example URI ---> mongodb+srv://weblab:6jYctMizX5Y5ie6W@catbook-fsjig.mongodb.net/catbookdb?retryWrites=true
-const mongoURL = process.env.ATLAS_SRV;
+const mongoURL = 'mongodb+srv://admin:admin@cluster0-ma9j1.mongodb.net/test?retryWrites=true';
 const options = {
   useNewUrlParser: true
 };
