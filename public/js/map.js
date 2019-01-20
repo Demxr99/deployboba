@@ -65,7 +65,7 @@ function renderMarkers(icon){
         for (const event of events) {
             let new_event_marker = createEventMarker(event.latLng, event.name, icon, event.address, event.rating, event.timeStart,  event.timeEnd);
             new_event_marker.setMap(map);
-            names.push({title: event.name});
+            names.push(event.name);
             markers.push(new_event_marker);
             let newDiv = document.createElement('div');
             let resultsDiv = document.getElementById('results');
@@ -81,14 +81,18 @@ function renderMarkers(icon){
         for (const location of locations) {
             let new_marker = createStoreMarker(location.latLng, location.name, icon, location.address, location.rating);
             new_marker.setMap(map);
-            names.push({title: location.name});
-            markers.push(new_marker);
-            let newDiv = document.createElement('div');
-            let resultsDiv = document.getElementById('results');
-            newDiv.className = 'item';
-            newDiv.innerText = location.name;
-            newDiv.nodeValue = location.name;
-            resultsDiv.appendChild(newDiv);
+            console.log(names)
+            console.log(location.name);
+            if (!(location.name in names)) {
+                names.push(location.name);
+                markers.push(new_marker);
+                let newDiv = document.createElement('div');
+                let resultsDiv = document.getElementById('results');
+                newDiv.className = 'item';
+                newDiv.innerText = location.name;
+                newDiv.nodeValue = location.name;
+                resultsDiv.appendChild(newDiv);
+            }
         }
         console.log(names);
         $('.ui.dropdown').dropdown({
