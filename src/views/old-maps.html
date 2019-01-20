@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Boba Run</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+            width: 100%;
+            float: right;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/js/calendar.min.js"></script>
+    <link rel="stylesheet" href="/static/css/calendar.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/semantic/semantic.min.css">
+    <link rel="stylesheet" href="/static/css/maps.css">
+    <link rel="stylesheet" href = "/static/css/style.css">
+</head>
+<body>
+    <div class="ui fixed stackable inverted menu" id = "navbar">    </div>
+    <div class="ui grid container" style="height:100%; width:100%; position: relative;">
+        <div class="two column row">
+            <div class="six wide column">
+                <div class="ui fluid selection search dropdown multiple">
+                    <input name="tags" type="hidden">
+                    
+                    <div class="default text">Select</div>
+                    <i class="search icon"></i>
+                    <div class="menu" id="results">
+                    </div>
+                </div>
+                <div class="ui container">
+                    <div id="store-content" class="ui container" style="display:none;">
+                        <p id="store-name"><strong>Store Name: </strong></p>
+                        <p id="store-address"><strong>Address: </strong></p>
+                        <p id="store-rating"><strong>Rating: </strong></p>
+                        <p id="store-status"><strong>Status: </strong></p>
+                        <p id="store-drink"><strong>Last Ordered Drink: </strong></p>
+                    </div>
+                    <div id="event-content" class="ui container" style="display:none;">
+                        <p id="event-name-disp"><strong>Event Name:</strong></p>
+                        <p id="event-address-disp"><strong>Address:</strong></p>
+                        <p id="event-rating-disp"><strong>Rating:</strong></p>
+                        <p id="event-drinks-disp"><strong>Drinks available: </strong></p>
+                        <p id="event-start-disp"><strong>Start Date: </strong></p>
+                        <p id="event-end-disp"><strong>End Date: </strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <div id="map"></div>
+                <button class="circular ui icon button" id="add-btn">
+                    <i class="icon plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="ui small modal">
+            <div class="content">
+                <div class="ui top attached tabular menu">
+                    <a class="item active" data-tab="first" id="tab-1">Add Store</a>
+                    <a class="item" data-tab="second" id="tab-2">Add Event</a>
+                </div>
+                <div class="ui bottom attached tab segment active" data-tab="first">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>Name of Boba Shop</label>
+                            <input id="shop-name" type="text" name="shop-name" placeholder="enter name here">
+                        </div>
+                        <div class="field">
+                            <label>Address</label>
+                            <input id="shop-address" type="text" name="shop-address" placeholder="enter address here">
+                        </div>
+                        <div class="field">
+                            <label>Zip code</label>
+                            <input id="shop-zip" type="text" name="shop-code" placeholder="enter zip code here">
+                        </div>
+                        <div class="actions">
+                            <div class="ui approve button">Submit</div>
+                            <div class="ui cancel button">Cancel</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="ui bottom attached tab segment" data-tab="second">
+                    <form class="ui form">
+                        <div class="field">
+                            <label>Name of Event</label>
+                            <input id="event-name" type="text" name="event-name" placeholder="enter name here">
+                        </div>
+                        <div class="field">
+                            <label>Address</label>
+                            <input id="event-address" type="text" name="event-address" placeholder="enter address here">
+                        </div>
+                        <div class="field">
+                            <label>Zip code</label>
+                            <input id="event-zip" type="text" name="event-code" placeholder="enter zip code here">
+                        </div>
+                        <div class="field">
+                            <label>Start Date</label>
+                            <div class="ui calendar" id="start-date">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input id="event-start" type="text" placeholder=" Start Date/Time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>End Date</label>
+                            <div class="ui calendar" id="end-date">
+                                <div class="ui input left icon">
+                                    <i class="calendar icon"></i>
+                                    <input id="event-end" type="text" placeholder="End Date/Time">
+                                </div>
+                            </div>  
+                        </div>
+        
+                        <div class="actions">
+                            <div class="ui approve button">Submit</div>
+                            <div class="ui cancel button">Cancel</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/navbar.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI&callback=initMap"
+            async defer></script>
+    
+    <script src="/static/semantic/semantic.min.js"></script>
+    <script src="/static/js/map.js"></script>
+</body>
+</html>
