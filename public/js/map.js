@@ -1,4 +1,6 @@
-const API_KEY = "AIzaSyBb-pivVtwhFSaw2ZXL4nadsUlJdygH3UI";
+const API_KEY = process.env.GOOGLE_API;
+const API_ENDPOINT_START = 'https://boba-run-weblab.herokuapp.com';
+
 let map;
 let icon;
 let names;
@@ -6,7 +8,7 @@ let markers;
 let add_btn = document.getElementById("add-btn");
 
 function main() {
-    get('/api/whoami', {}).then(function(user) {
+    get(API_ENDPOINT_START + '/api/whoami', {}).then(function(user) {
       console.log(user);
       renderNavbar(user);
       if (user !== undefined && user.googleid !== undefined) {
@@ -60,7 +62,7 @@ function renderMarkers(icon){
     markers = [];
     
     // gets all events from database that match criteria
-    get('/api/events', {name : new_x}).then(events => {
+    get(API_ENDPOINT_START + '/api/events', {name : new_x}).then(events => {
         console.log(events);
         for (const event of events) {
             let new_event_marker = createEventMarker(event.latLng, event.name, icon, event.address, event.rating, event.timeStart,  event.timeEnd);
@@ -76,7 +78,7 @@ function renderMarkers(icon){
         }
     });
     // gets all locations from database that match criteria
-    get('/api/locations', {name : new_x}).then(locations => {
+    get(API_ENDPOINT_START + '/api/locations', {name : new_x}).then(locations => {
         console.log(locations);
         for (const location of locations) {
             let new_marker = createStoreMarker(location.latLng, location.name, icon, location.address, location.rating);
@@ -239,7 +241,7 @@ function submitEvent(event_name, event_address, event_zip, location, event_start
         start : event_start,
         end : event_end,
     };
-    post('/api/events', data);
+    post(API_ENDPOINT_START + '/api/events', data);
 }
 
 add_btn.addEventListener("click", function(){
