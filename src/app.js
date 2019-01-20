@@ -5,6 +5,8 @@ const express = require('express');
 const session = require('express-session');
 const socketio = require('socket.io');
 
+require('dotenv').config();
+
 // local dependencies
 const db = require('./db');
 const passport = require('./passport');
@@ -72,7 +74,6 @@ app.use(function(err, req, res, next) {
 
 // port config
 const port = (process.env.PORT || 3000); // config variable
-console.log(port);
 const server = http.Server(app);
 
 //configure socket.io
@@ -87,5 +88,3 @@ io.on('connection', function(socket){
 server.listen(port, function() {
   console.log('Server running on port: ' + port);
 });
-
-require('dotenv').config();
