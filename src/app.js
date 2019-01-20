@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
 const socketio = require('socket.io');
+require('dotenv').config();
 
 // local dependencies
 const db = require('./db');
@@ -71,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 // port config
-const port = 3000; // config variable
+const port = (process.env.PORT || 3000); // config variable
 const server = http.Server(app);
 
 //configure socket.io
