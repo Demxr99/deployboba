@@ -1,9 +1,13 @@
 #add-btn {
     position: absolute;
-    bottom: 35px;
-    right: 630px;
+    bottom: 745px;
+    right: 15px;
     z-index: 99;
     height: 50px;
     width: 50px;
     background: #c0c0a8
+}
+
+#add-btn:hover {
+    background: #b2765d;
 }

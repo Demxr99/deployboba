@@ -28,7 +28,7 @@ function renderNavbar(user) {
 
   if (user !== undefined && user.googleid !== undefined) {
     navbarDiv.appendChild(newNavbarItem('Profile', '/u/profile?'+user._id));
-    navbarDiv.appendChild(newNavbarItem('Add Store/Event', '/add-store-event'));
+    //navbarDiv.appendChild(newNavbarItem('Add Store/Event', '/add-store-event'));
   }
   navbarDiv.appendChild(navbarRightMenu(user));
 }
